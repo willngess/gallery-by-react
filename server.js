@@ -13,6 +13,7 @@ const open = require('open');
 let isInitialCompilation = true;
 
 const compiler = webpack(config);
+console.log('this is webpack config:');
 
 new WebpackDevServer(compiler, config.devServer)
 .listen(config.port, 'localhost', (err) => {

@@ -96,6 +96,42 @@ class ImgFigure extends React.Component {
 	}
 }
 
+
+class ControllerUnits extends React.Component {
+
+	handleClick = (e) => {
+
+		e.stopPropagation();
+		e.preventDefault();
+
+		//图片居中则翻转，否则居中
+		if(this.props.arrange.isCenter){
+			this.props.inverse()
+		}else{
+			this.props.center()
+		}
+
+	}
+
+	render() {
+
+		var controllerUnitClassName = 'controller-unit';
+
+		if(this.props.arrange.isCenter){
+			controllerUnitClassName += ' is-center';
+		}
+
+		if(this.props.arrange.isInverse){
+			controllerUnitClassName += ' is-inverse';
+		}
+
+		return (
+			<span className={controllerUnitClassName} onClick={this.handleClick}></span>
+		);
+	}
+
+}
+
 class AppComponent extends React.Component {
 
 	constructor(props) {
@@ -212,7 +248,6 @@ class AppComponent extends React.Component {
 
 			imgsArrangeArr.splice(centerIndex, 0, imgsArrangeCenterArr[0]);
 
-
 		this.setState({
 			imgsArrangeArr: imgsArrangeArr
 		});
@@ -311,6 +346,7 @@ class AppComponent extends React.Component {
 			}
 
 			imgFigures.push( <ImgFigure key={index} ref={'imgFigure' + index} data = {value} arrange={this.state.imgsArrangeArr[index]} inverse={this.inverse(index)} center={this.center(index)} /> )
+			controllerUnits.push(<ControllerUnits key={index} arrange={this.state.imgsArrangeArr[index]} inverse={this.inverse(index)} center={this.center(index)} />)
 
 		});
 

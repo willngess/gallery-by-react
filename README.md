@@ -23,7 +23,7 @@ a one picture gallery project
 ## 如何开始
 clone到本地
 ```
-> git clone git@github.com:willngess/gallery-by-react.git
+> git clone https://github.com/willngess/gallery-by-react.git
 ```
 安装依赖
 ```

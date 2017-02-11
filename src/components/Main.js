@@ -179,10 +179,7 @@ class AppComponent extends React.Component {
 	rearrange(centerIndex) {
 
 		var imgsArrangeArr = this.state.imgsArrangeArr,
-			Constant = this.Constant,
-			centerPos = Constant.centerPos,
-			hPosRange = Constant.hPosRange,
-			vPosRange = Constant.vPosRange,
+			{centerPos, hPosRange, vPosRange} = this.Constant,
 			hPosRangeLeftSecX = hPosRange.leftSecX,
 			hPosRangeRightSecX = hPosRange.rightSecX,
 			hPosRangeY = hPosRange.y,
@@ -345,8 +342,16 @@ class AppComponent extends React.Component {
 				}
 			}
 
-			imgFigures.push( <ImgFigure key={index} ref={'imgFigure' + index} data = {value} arrange={this.state.imgsArrangeArr[index]} inverse={this.inverse(index)} center={this.center(index)} /> )
-			controllerUnits.push(<ControllerUnits key={index} arrange={this.state.imgsArrangeArr[index]} inverse={this.inverse(index)} center={this.center(index)} />)
+			var obj = {
+				key: index,
+				data: value,
+				arrange: this.state.imgsArrangeArr[index],
+				inverse: this.inverse(index),
+				center: this.center(index)
+			}
+
+			imgFigures.push( <ImgFigure ref={'imgFigure' + index} {...obj} /> )
+			controllerUnits.push(<ControllerUnits {...obj} />)
 
 		});
 
